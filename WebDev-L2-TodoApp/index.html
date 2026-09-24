@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="TaskFlow - A responsive to-do web application for managing daily tasks."
+    >
+
+    <title>TaskFlow | To-Do Web App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+
+        <nav class="navbar">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">✓</span>
+                TaskFlow
+            </a>
+
+            <div class="date" id="currentDate"></div>
+
+        </nav>
+
+
+        <div class="hero">
+
+            <div class="hero-text">
+
+                <p class="eyebrow">Daily Task Manager</p>
+
+                <h1>
+                    Organise your day.
+                    <span>Get things done.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Add, manage and complete your daily tasks
+                    from one simple workspace.
+                </p>
+
+            </div>
+
+            <form class="task-form" id="taskForm">
+
+                <label for="taskInput">
+                    What do you need to do?
+                </label>
+
+                <div class="input-group">
+
+                    <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Enter a new task..."
+                        maxlength="120"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <button type="submit" class="add-btn">
+                        <span>+</span>
+                        Add Task
+                    </button>
+
+                </div>
+
+                <p class="form-message" id="formMessage"></p>
+
+            </form>
+
+        </div>
+
+    </header>
+
+
+    <main class="main-container">
+
+        <section class="progress-section">
+
+            <div>
+
+                <p class="section-label">
+                    Today's Progress
+                </p>
+
+                <h2>Keep moving forward.</h2>
+
+            </div>
+
+
+            <div class="progress-stats">
+
+                <div class="stat">
+
+                    <span
+                        class="stat-number"
+                        id="pendingTotal"
+                    >
+                        0
+                    </span>
+
+                    <span class="stat-label">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span
+                        class="stat-number"
+                        id="completedTotal"
+                    >
+                        0
+                    </span>
+
+                    <span class="stat-label">
+                        Completed
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="task-board">
+
+            <div class="task-column">
+
+                <div class="column-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            To Do
+                        </p>
+
+                        <h2>Pending Tasks</h2>
+
+                    </div>
+
+                    <span
+                        class="count-badge"
+                        id="pendingCount"
+                    >
+                        0 pending
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="task-list"
+                    id="pendingList"
+                ></div>
+
+
+                <div
+                    class="empty-state"
+                    id="pendingEmpty"
+                >
+
+                    <div class="empty-icon">✓</div>
+
+                    <h3>You're all caught up!</h3>
+
+                    <p>
+                        Add a task above to start planning
+                        your day.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="task-column completed-column">
+
+                <div class="column-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            Finished
+                        </p>
+
+                        <h2>Completed Tasks</h2>
+
+                    </div>
+
+                    <span
+                        class="count-badge completed-badge"
+                        id="completedCount"
+                    >
+                        0 completed
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="task-list"
+                    id="completedList"
+                ></div>
+
+
+                <div
+                    class="empty-state"
+                    id="completedEmpty"
+                >
+
+                    <div class="empty-icon">○</div>
+
+                    <h3>No completed tasks yet</h3>
+
+                    <p>
+                        Complete a pending task and it will
+                        appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div>
+
+            <strong>TaskFlow</strong>
+
+            <p>
+                Simple daily task management.
+            </p>
+
+        </div>
+
+
+        <div class="footer-credit">
+
+            <p>
+                Designed &amp; Developed by
+                <strong>Thabiso Phillip Shezi</strong>
+            </p>
+
+            <p>
+                Oasis Infobyte Internship ·
+                Web Development &amp; Designing ·
+                Level 1 · Task 3
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
