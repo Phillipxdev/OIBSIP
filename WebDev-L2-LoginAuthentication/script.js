@@ -384,7 +384,7 @@ if (currentPage === "register") {
                     function () {
 
                         window.location.href =
-                            "login.html";
+                            "index.html";
 
                     },
                     1200
@@ -627,7 +627,7 @@ if (currentPage === "dashboard") {
     ) {
 
         window.location.replace(
-            "login.html"
+            "index.html"
         );
 
     } else {
@@ -663,7 +663,7 @@ if (currentPage === "dashboard") {
                     );
 
                     window.location.replace(
-                        "login.html"
+                        "index.html"
                     );
                 }
             );
