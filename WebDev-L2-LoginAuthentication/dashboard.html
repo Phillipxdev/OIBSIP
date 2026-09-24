@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | AuthSystem</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="dashboard">
+
+    <main class="dashboard">
+
+        <header class="dashboard-header">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    A
+                </div>
+
+                <span>AuthSystem</span>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="logout-btn"
+                class="logout-btn"
+            >
+                Logout
+            </button>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+            <div class="welcome-card">
+
+                <p class="eyebrow">
+                    DASHBOARD
+                </p>
+
+                <h1>
+                    Welcome,
+                    <span id="dashboard-username">
+                        User
+                    </span>!
+                </h1>
+
+                <p>
+                    You have successfully logged into your
+                    protected dashboard.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <article class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        ✓
+                    </div>
+
+                    <h2>Authenticated</h2>
+
+                    <p>
+                        Your login session is currently active.
+                    </p>
+
+                </article>
+
+
+                <article class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        🔒
+                    </div>
+
+                    <h2>Protected Page</h2>
+
+                    <p>
+                        Users who are not logged in are redirected
+                        to the login page.
+                    </p>
+
+                </article>
+
+
+                <article class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        # 
+                    </div>
+
+                    <h2>Password Security</h2>
+
+                    <p>
+                        Passwords are hashed before being stored
+                        in the browser.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <footer class="dashboard-footer">
+
+            <p>
+                Task 4 · Login Authentication System
+            </p>
+
+            <p>
+                Thabiso Phillip Shezi
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
