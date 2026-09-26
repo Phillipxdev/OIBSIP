@@ -17,7 +17,7 @@ function MyOrders({ onBack }) {
 
             try {
                 const response = await fetch(
-                    "http://localhost:5000/api/orders/my-orders",
+                    "https://pizza-delivery-api-nm2d.onrender.com/api/orders/my-orders",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
