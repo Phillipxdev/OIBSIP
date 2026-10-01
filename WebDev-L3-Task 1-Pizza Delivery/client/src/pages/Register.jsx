@@ -8,20 +8,24 @@ function Register() {
     });
 
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
+        setFormData((currentData) => ({
+            ...currentData,
             [e.target.name]: e.target.value
-        });
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setLoading(true);
+        setMessage("");
+
         try {
             const response = await fetch(
-                "http://localhost:5000/api/auth/register",
+                "https://pizza-delivery-api-nm2d.onrender.com/api/auth/register",
                 {
                     method: "POST",
                     headers: {
@@ -32,10 +36,23 @@ function Register() {
             );
 
             const data = await response.json();
-            setMessage(data.message);
 
+            if (response.ok) {
+                setMessage(data.message || "Registration successful!");
+
+                setFormData({
+                    name: "",
+                    email: "",
+                    password: ""
+                });
+            } else {
+                setMessage(data.message || "Registration failed.");
+            }
         } catch (error) {
-            setMessage("Unable to connect to server");
+            console.error("Registration error:", error);
+            setMessage("Unable to connect to server.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -68,11 +85,12 @@ function Register() {
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
+                    minLength="6"
                     required
                 />
 
-                <button type="submit">
-                    Register
+                <button type="submit" disabled={loading}>
+                    {loading ? "Creating Account..." : "Register"}
                 </button>
             </form>
 

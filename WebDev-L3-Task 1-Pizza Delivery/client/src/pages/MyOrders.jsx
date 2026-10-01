@@ -5,6 +5,14 @@ function MyOrders({ onBack }) {
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState("");
 
+    const statuses = [
+        "Order Received",
+        "Preparing",
+        "Baking",
+        "Out for Delivery",
+        "Delivered"
+    ];
+
     useEffect(() => {
         const fetchOrders = async () => {
             const token = localStorage.getItem("token");
@@ -17,7 +25,7 @@ function MyOrders({ onBack }) {
 
             try {
                 const response = await fetch(
-                    "http://localhost:5000/api/orders/my-orders",
+                    "https://pizza-delivery-api-nm2d.onrender.com/api/orders/my-orders",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -29,14 +37,14 @@ function MyOrders({ onBack }) {
 
                 if (response.ok) {
                     setOrders(data);
+                    setMessage("");
                 } else {
                     setMessage(
                         data.message || "Unable to load orders."
                     );
                 }
-
             } catch (error) {
-                console.error(error);
+                console.error("Orders error:", error);
                 setMessage("Unable to connect to the server.");
             } finally {
                 setLoading(false);
@@ -47,20 +55,12 @@ function MyOrders({ onBack }) {
     }, []);
 
     const getStatusNumber = (status) => {
-        const statuses = [
-            "Order Received",
-            "Preparing",
-            "Baking",
-            "Out for Delivery",
-            "Delivered"
-        ];
-
         return statuses.indexOf(status);
     };
 
     return (
         <main>
-            <button onClick={onBack}>
+            <button type="button" onClick={onBack}>
                 ← Back
             </button>
 
@@ -88,16 +88,11 @@ function MyOrders({ onBack }) {
                     </p>
 
                     <div>
-                        {[
-                            "Order Received",
-                            "Preparing",
-                            "Baking",
-                            "Out for Delivery",
-                            "Delivered"
-                        ].map((status, index) => (
+                        {statuses.map((status, index) => (
                             <div key={status}>
                                 <span>
-                                    {index <= getStatusNumber(order.status)
+                                    {index <=
+                                    getStatusNumber(order.status)
                                         ? "✅"
                                         : "⬜"}
                                 </span>
@@ -109,22 +104,22 @@ function MyOrders({ onBack }) {
 
                     <p>
                         <strong>Base:</strong>{" "}
-                        {order.pizza.base}
+                        {order.pizza?.base || "Not available"}
                     </p>
 
                     <p>
                         <strong>Sauce:</strong>{" "}
-                        {order.pizza.sauce}
+                        {order.pizza?.sauce || "Not available"}
                     </p>
 
                     <p>
                         <strong>Cheese:</strong>{" "}
-                        {order.pizza.cheese}
+                        {order.pizza?.cheese || "Not available"}
                     </p>
 
                     <p>
                         <strong>Vegetables:</strong>{" "}
-                        {order.pizza.vegetables.length > 0
+                        {order.pizza?.vegetables?.length > 0
                             ? order.pizza.vegetables.join(", ")
                             : "None"}
                     </p>
@@ -136,7 +131,7 @@ function MyOrders({ onBack }) {
 
                     <p>
                         <strong>Total:</strong>{" "}
-                        R{order.totalPrice.toFixed(2)}
+                        R{Number(order.totalPrice).toFixed(2)}
                     </p>
 
                     <p>

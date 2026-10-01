@@ -8,6 +8,8 @@ function PizzaBuilder({ onBack }) {
         vegetables: []
     });
 
+    const [loading, setLoading] = useState(false);
+
     const bases = [
         "Classic",
         "Thin Crust",
@@ -71,17 +73,17 @@ function PizzaBuilder({ onBack }) {
             return;
         }
 
+        setLoading(true);
+
         try {
             const response = await fetch(
-                "http://localhost:5000/api/orders",
+                "https://pizza-delivery-api-nm2d.onrender.com/api/orders",
                 {
                     method: "POST",
-
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`
                     },
-
                     body: JSON.stringify({
                         pizza,
                         quantity: 1,
@@ -103,21 +105,19 @@ function PizzaBuilder({ onBack }) {
                 });
             } else {
                 alert(
-                    data.message ||
-                    "Unable to place order."
+                    data.message || "Unable to place order."
                 );
             }
-
         } catch (error) {
-            console.error(error);
-
+            console.error("Order error:", error);
             alert("Unable to connect to the server.");
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <main>
-
             <button type="button" onClick={onBack}>
                 ← Back
             </button>
@@ -125,7 +125,6 @@ function PizzaBuilder({ onBack }) {
             <h1>Build Your Pizza 🍕</h1>
 
             <form onSubmit={handleSubmit}>
-
                 <section>
                     <h2>Step 1: Choose a Base</h2>
 
@@ -247,12 +246,12 @@ function PizzaBuilder({ onBack }) {
                     </p>
                 </section>
 
-                <button type="submit">
-                    Place Order 🍕
+                <button type="submit" disabled={loading}>
+                    {loading
+                        ? "Placing Order..."
+                        : "Place Order 🍕"}
                 </button>
-
             </form>
-
         </main>
     );
 }

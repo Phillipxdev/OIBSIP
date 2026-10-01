@@ -7,20 +7,24 @@ function Login({ onLogin }) {
     });
 
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
+        setFormData((currentData) => ({
+            ...currentData,
             [e.target.name]: e.target.value
-        });
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setLoading(true);
+        setMessage("");
+
         try {
             const response = await fetch(
-                "http://localhost:5000/api/auth/login",
+                "https://pizza-delivery-api-nm2d.onrender.com/api/auth/login",
                 {
                     method: "POST",
                     headers: {
@@ -42,16 +46,19 @@ function Login({ onLogin }) {
                     JSON.stringify(data.user)
                 );
 
-                setMessage("Login successful");
+                setMessage("Login successful!");
 
-                onLogin();
-                
+                if (onLogin) {
+                    onLogin();
+                }
             } else {
-                setMessage(data.message);
+                setMessage(data.message || "Login failed.");
             }
-
         } catch (error) {
-            setMessage("Unable to connect to server");
+            console.error("Login error:", error);
+            setMessage("Unable to connect to server.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -60,7 +67,6 @@ function Login({ onLogin }) {
             <h1>Login</h1>
 
             <form onSubmit={handleSubmit}>
-
                 <input
                     type="email"
                     name="email"
@@ -79,10 +85,9 @@ function Login({ onLogin }) {
                     required
                 />
 
-                <button type="submit">
-                    Login
+                <button type="submit" disabled={loading}>
+                    {loading ? "Logging in..." : "Login"}
                 </button>
-
             </form>
 
             {message && <p>{message}</p>}
