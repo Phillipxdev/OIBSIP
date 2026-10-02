@@ -20,7 +20,7 @@ function Login({ onLogin }) {
 
         try {
             const response = await fetch(
-                "https://pizza-delivery-api-nm2d.onrender.com/api/auth/login",
+                "https://pizza-delivery-api-phillip.onrender.com/api/auth/login",
                 {
                     method: "POST",
                     headers: {
