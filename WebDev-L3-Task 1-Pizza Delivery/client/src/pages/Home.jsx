@@ -4,12 +4,14 @@ function Home({
     onViewOrders,
     onAdmin
 }) {
+    // Get logged-in user
     const user = JSON.parse(localStorage.getItem("user"));
 
+    // Featured pizzas
     const pizzas = [
         {
             id: 1,
-            emoji: "🍕",
+            image: "/images/pepperoni.png",
             name: "Margherita",
             description:
                 "Classic tomato sauce, mozzarella cheese and fresh basil.",
@@ -18,7 +20,7 @@ function Home({
         },
         {
             id: 2,
-            emoji: "🍕",
+            image: "/images/margherita.png",
             name: "Pepperoni",
             description:
                 "Mozzarella, rich tomato sauce and crispy pepperoni.",
@@ -27,7 +29,7 @@ function Home({
         },
         {
             id: 3,
-            emoji: "🍕",
+            image: "/images/bbq-chicken.webp",
             name: "BBQ Chicken",
             description:
                 "Grilled chicken, smoky BBQ sauce, mozzarella and onion.",
@@ -39,11 +41,16 @@ function Home({
     return (
         <div className="home-page">
 
-            {/* ================= HEADER ================= */}
+            {/* =========================
+                HEADER
+            ========================== */}
 
             <header className="home-header">
+
                 <div className="brand">
-                    <span className="brand-icon">🍕</span>
+                    <span className="brand-icon">
+                        🍕
+                    </span>
 
                     <div>
                         <h1>Pizza Delivery</h1>
@@ -52,6 +59,7 @@ function Home({
                 </div>
 
                 <div className="user-area">
+
                     <span className="welcome-text">
                         Welcome,{" "}
                         <strong>
@@ -65,15 +73,22 @@ function Home({
                     >
                         Logout
                     </button>
+
                 </div>
+
             </header>
 
 
-            {/* ================= MAIN ================= */}
+            {/* =========================
+                MAIN
+            ========================== */}
 
             <main className="home-main">
 
-                {/* Navigation Actions */}
+
+                {/* =========================
+                    ACTION BAR
+                ========================== */}
 
                 <section className="action-bar">
 
@@ -94,6 +109,7 @@ function Home({
                     </button>
 
                     {user?.role === "admin" && (
+
                         <button
                             className="action-btn admin-action"
                             onClick={onAdmin}
@@ -101,12 +117,15 @@ function Home({
                             <span>⚙️</span>
                             Admin Dashboard
                         </button>
+
                     )}
 
                 </section>
 
 
-                {/* ================= HERO ================= */}
+                {/* =========================
+                    HERO
+                ========================== */}
 
                 <section className="hero-section">
 
@@ -122,10 +141,10 @@ function Home({
                         </h2>
 
                         <p>
-                            Build your perfect pizza or choose
-                            one of our favourites. Fresh ingredients,
-                            amazing flavour and fast delivery straight
-                            to your door.
+                            Fresh ingredients, bold flavours and
+                            delicious pizza delivered straight to
+                            your door. Choose one of our favourites
+                            or build your own perfect pizza.
                         </p>
 
                         <button
@@ -133,8 +152,9 @@ function Home({
                             onClick={onBuildPizza}
                         >
                             Build Your Pizza
-                            <span>→</span>
+                            <span> →</span>
                         </button>
+
 
                         <div className="hero-features">
 
@@ -157,26 +177,37 @@ function Home({
 
                     <div className="hero-visual">
 
-                        <div className="pizza-circle">
-                            🍕
-                        </div>
-
-                        <div className="floating-card delivery-card">
-                            <span>🛵</span>
-
-                            <div>
-                                <strong>Fast Delivery</strong>
-                                <small>Hot & fresh</small>
-                            </div>
-                        </div>
-
                         <div className="floating-card rating-card">
+
                             <span>⭐</span>
 
                             <div>
-                                <strong>4.9 Rating</strong>
-                                <small>Happy customers</small>
+                                <strong>
+                                    Customer Favourite
+                                </strong>
+
+                                <small>
+                                    Freshly prepared
+                                </small>
                             </div>
+
+                        </div>
+
+
+                        <div className="floating-card delivery-card">
+
+                            <span>🛵</span>
+
+                            <div>
+                                <strong>
+                                    Fast Delivery
+                                </strong>
+
+                                <small>
+                                    Hot & fresh
+                                </small>
+                            </div>
+
                         </div>
 
                     </div>
@@ -184,13 +215,78 @@ function Home({
                 </section>
 
 
-                {/* ================= MENU ================= */}
+                {/* =========================
+                    BENEFITS
+                ========================== */}
+
+                <section className="benefits-section">
+
+                    <div className="benefit">
+
+                        <span className="benefit-icon">
+                            🍅
+                        </span>
+
+                        <div>
+                            <h3>Fresh Ingredients</h3>
+
+                            <p>
+                                Quality ingredients prepared
+                                fresh for every order.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div className="benefit">
+
+                        <span className="benefit-icon">
+                            👨‍🍳
+                        </span>
+
+                        <div>
+                            <h3>Made to Order</h3>
+
+                            <p>
+                                Every pizza is prepared after
+                                you place your order.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div className="benefit">
+
+                        <span className="benefit-icon">
+                            🛵
+                        </span>
+
+                        <div>
+                            <h3>Fast Delivery</h3>
+
+                            <p>
+                                Your pizza delivered hot and
+                                fresh to your door.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                {/* =========================
+                    MENU
+                ========================== */}
 
                 <section className="menu-section">
 
                     <div className="section-heading">
 
                         <div>
+
                             <span className="section-label">
                                 OUR MENU
                             </span>
@@ -201,9 +297,11 @@ function Home({
 
                             <p>
                                 Delicious pizzas prepared with
-                                fresh ingredients.
+                                fresh ingredients and bold flavours.
                             </p>
+
                         </div>
+
 
                         <button
                             className="build-small-btn"
@@ -224,11 +322,15 @@ function Home({
                                 key={pizza.id}
                             >
 
+                                {/* REAL PIZZA IMAGE */}
+
                                 <div className="pizza-image">
 
-                                    <span className="pizza-emoji">
-                                        {pizza.emoji}
-                                    </span>
+                                    <img
+                                        src={pizza.image}
+                                        alt={pizza.name}
+                                        loading="lazy"
+                                    />
 
                                     <span className="pizza-tag">
                                         {pizza.tag}
@@ -236,6 +338,8 @@ function Home({
 
                                 </div>
 
+
+                                {/* PIZZA INFORMATION */}
 
                                 <div className="pizza-card-content">
 
@@ -251,17 +355,21 @@ function Home({
                                     <div className="pizza-card-footer">
 
                                         <div className="pizza-price">
-                                            <small>From</small>
+
+                                            <small>
+                                                From
+                                            </small>
 
                                             <strong>
                                                 R{pizza.price.toFixed(2)}
                                             </strong>
+
                                         </div>
 
 
                                         <button
-                                            onClick={onBuildPizza}
                                             className="order-btn"
+                                            onClick={onBuildPizza}
                                         >
                                             Order Now
                                         </button>
@@ -279,11 +387,14 @@ function Home({
                 </section>
 
 
-                {/* ================= PROMO ================= */}
+                {/* =========================
+                    BUILD YOUR OWN PROMOTION
+                ========================== */}
 
                 <section className="promo-section">
 
                     <div>
+
                         <span className="promo-label">
                             BUILD IT YOUR WAY
                         </span>
@@ -294,10 +405,12 @@ function Home({
 
                         <p>
                             Choose your size, crust, sauce,
-                            cheese and toppings to create the
-                            perfect pizza.
+                            cheese and toppings to create your
+                            own perfect pizza.
                         </p>
+
                     </div>
+
 
                     <button onClick={onBuildPizza}>
                         Start Building →
@@ -305,14 +418,142 @@ function Home({
 
                 </section>
 
+
+                {/* =========================
+                    HOW IT WORKS
+                ========================== */}
+
+                <section className="how-section">
+
+                    <div className="how-heading">
+
+                        <span className="section-label">
+                            HOW IT WORKS
+                        </span>
+
+                        <h2>
+                            Pizza in three simple steps
+                        </h2>
+
+                    </div>
+
+
+                    <div className="steps-grid">
+
+                        <div className="step-card">
+
+                            <span className="step-number">
+                                01
+                            </span>
+
+                            <div className="step-icon">
+                                🍕
+                            </div>
+
+                            <h3>
+                                Choose Your Pizza
+                            </h3>
+
+                            <p>
+                                Pick a customer favourite or
+                                create your own pizza.
+                            </p>
+
+                        </div>
+
+
+                        <div className="step-card">
+
+                            <span className="step-number">
+                                02
+                            </span>
+
+                            <div className="step-icon">
+                                🧾
+                            </div>
+
+                            <h3>
+                                Place Your Order
+                            </h3>
+
+                            <p>
+                                Confirm your pizza and submit
+                                your order.
+                            </p>
+
+                        </div>
+
+
+                        <div className="step-card">
+
+                            <span className="step-number">
+                                03
+                            </span>
+
+                            <div className="step-icon">
+                                🛵
+                            </div>
+
+                            <h3>
+                                Track Your Order
+                            </h3>
+
+                            <p>
+                                Check My Orders to follow the
+                                progress of your pizza.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                {/* =========================
+                    ORDER CTA
+                ========================== */}
+
+                <section className="order-cta">
+
+                    <div>
+
+                        <span className="section-label">
+                            HUNGRY?
+                        </span>
+
+                        <h2>
+                            Your next pizza is only
+                            a few clicks away.
+                        </h2>
+
+                        <p>
+                            Start building your perfect pizza
+                            and place your order today.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        onClick={onBuildPizza}
+                    >
+                        Order Pizza →
+                    </button>
+
+                </section>
+
             </main>
 
 
-            {/* ================= FOOTER ================= */}
+            {/* =========================
+                FOOTER
+            ========================== */}
 
             <footer className="home-footer">
 
                 <div className="footer-brand">
+
                     <strong>
                         🍕 Pizza Delivery
                     </strong>
@@ -321,7 +562,22 @@ function Home({
                         Fresh pizza delivered straight
                         to your door.
                     </p>
+
                 </div>
+
+
+                <div className="footer-links">
+
+                    <button onClick={onBuildPizza}>
+                        Build Pizza
+                    </button>
+
+                    <button onClick={onViewOrders}>
+                        My Orders
+                    </button>
+
+                </div>
+
 
                 <p className="copyright">
                     © {new Date().getFullYear()} Pizza Delivery.

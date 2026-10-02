@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Register() {
+function Register({ onLogin }) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -38,16 +38,26 @@ function Register() {
             const data = await response.json();
 
             if (response.ok) {
-                setMessage(data.message || "Registration successful!");
+                setMessage(
+                    data.message ||
+                    "Registration successful! Redirecting to login..."
+                );
 
                 setFormData({
                     name: "",
                     email: "",
                     password: ""
                 });
+
+                // Go to Login page after successful registration
+                setTimeout(() => {
+                    onLogin();
+                }, 1500);
+
             } else {
                 setMessage(data.message || "Registration failed.");
             }
+
         } catch (error) {
             console.error("Registration error:", error);
             setMessage("Unable to connect to server.");
