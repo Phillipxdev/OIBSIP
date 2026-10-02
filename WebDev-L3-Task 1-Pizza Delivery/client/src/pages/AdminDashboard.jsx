@@ -22,7 +22,7 @@ function AdminDashboard({ onBack }) {
 
         try {
             const response = await fetch(
-                "https://pizza-delivery-api-nm2d.onrender.com/api/orders",
+                "https://pizza-delivery-api-phillip.onrender.com/api/orders",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -64,7 +64,7 @@ function AdminDashboard({ onBack }) {
 
         try {
             const response = await fetch(
-                `https://pizza-delivery-api-nm2d.onrender.com/api/orders/${orderId}/status`,
+                `https://pizza-delivery-api-phillip.onrender.com/api/orders/${orderId}/status`,
                 {
                     method: "PUT",
 

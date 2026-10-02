@@ -25,7 +25,7 @@ function Register() {
 
         try {
             const response = await fetch(
-                "https://pizza-delivery-api-nm2d.onrender.com/api/auth/register",
+                "https://pizza-delivery-api-phillip.onrender.com/api/auth/register",
                 {
                     method: "POST",
                     headers: {

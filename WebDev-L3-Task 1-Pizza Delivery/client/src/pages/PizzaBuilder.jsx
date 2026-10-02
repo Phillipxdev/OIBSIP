@@ -42,6 +42,7 @@ function PizzaBuilder({ onBack }) {
         "Jalapeño"
     ];
 
+    // Add or remove vegetables
     const handleVegetableChange = (vegetable) => {
         setPizza((currentPizza) => {
             const selected =
@@ -58,14 +59,17 @@ function PizzaBuilder({ onBack }) {
         });
     };
 
+    // Place order
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Validate required selections
         if (!pizza.base || !pizza.sauce || !pizza.cheese) {
             alert("Please choose a base, sauce and cheese.");
             return;
         }
 
+        // Get login token
         const token = localStorage.getItem("token");
 
         if (!token) {
@@ -77,7 +81,7 @@ function PizzaBuilder({ onBack }) {
 
         try {
             const response = await fetch(
-                "https://pizza-delivery-api-nm2d.onrender.com/api/orders",
+                "https://pizza-delivery-api-phillip.onrender.com/api/orders",
                 {
                     method: "POST",
                     headers: {
@@ -97,6 +101,7 @@ function PizzaBuilder({ onBack }) {
             if (response.ok) {
                 alert("Order placed successfully! 🍕");
 
+                // Reset pizza builder
                 setPizza({
                     base: "",
                     sauce: "",
@@ -105,7 +110,8 @@ function PizzaBuilder({ onBack }) {
                 });
             } else {
                 alert(
-                    data.message || "Unable to place order."
+                    data.message ||
+                        "Unable to place order."
                 );
             }
         } catch (error) {
@@ -118,13 +124,19 @@ function PizzaBuilder({ onBack }) {
 
     return (
         <main>
-            <button type="button" onClick={onBack}>
+            {/* Back button */}
+            <button
+                type="button"
+                onClick={onBack}
+            >
                 ← Back
             </button>
 
             <h1>Build Your Pizza 🍕</h1>
 
             <form onSubmit={handleSubmit}>
+
+                {/* Base */}
                 <section>
                     <h2>Step 1: Choose a Base</h2>
 
@@ -148,6 +160,7 @@ function PizzaBuilder({ onBack }) {
                     ))}
                 </section>
 
+                {/* Sauce */}
                 <section>
                     <h2>Step 2: Choose a Sauce</h2>
 
@@ -171,6 +184,7 @@ function PizzaBuilder({ onBack }) {
                     ))}
                 </section>
 
+                {/* Cheese */}
                 <section>
                     <h2>Step 3: Choose Cheese</h2>
 
@@ -180,7 +194,9 @@ function PizzaBuilder({ onBack }) {
                                 type="radio"
                                 name="cheese"
                                 value={cheese}
-                                checked={pizza.cheese === cheese}
+                                checked={
+                                    pizza.cheese === cheese
+                                }
                                 onChange={(e) =>
                                     setPizza({
                                         ...pizza,
@@ -194,6 +210,7 @@ function PizzaBuilder({ onBack }) {
                     ))}
                 </section>
 
+                {/* Vegetables */}
                 <section>
                     <h2>Step 4: Choose Vegetables</h2>
 
@@ -216,6 +233,7 @@ function PizzaBuilder({ onBack }) {
                     ))}
                 </section>
 
+                {/* Pizza summary */}
                 <section>
                     <h2>Your Pizza</h2>
 
@@ -246,7 +264,11 @@ function PizzaBuilder({ onBack }) {
                     </p>
                 </section>
 
-                <button type="submit" disabled={loading}>
+                {/* Submit */}
+                <button
+                    type="submit"
+                    disabled={loading}
+                >
                     {loading
                         ? "Placing Order..."
                         : "Place Order 🍕"}
